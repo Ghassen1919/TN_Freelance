@@ -1,0 +1,24 @@
+.club-card {
+    width: 100%;
+  }
+  
+  .club-item-card {
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+  }
+  
+  .club-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .club-header h3 {
+    margin: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  

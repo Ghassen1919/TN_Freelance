@@ -1,0 +1,98 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="row justify-content-between">
+        <div class="col-lg-4">
+         
+        </div>
+        <div class="star-rating">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+            <mat-icon [ngClass]="{'filled-star': star <= rating}"> 
+              {{ star <= rating ? 'star' : (star - rating < 1 ? 'star_half' : 'star_border') }}
+            </mat-icon>
+          </ng-container>
+          <span class="rating-text">({{ rating }}/5)</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+          
+          <ng-container matColumnDef="reviewer">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">reviewer</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                
+                <div class="m-l-16">
+                  <p class="f-w-600 mat-subtitle-1 f-s-16 m-t-0">
+                    {{ element.reviewerName || 'Loading...' }}
+                  </p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="comment">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">comment</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                
+                <div class="m-l-16">
+                  <p class="f-w-600 mat-subtitle-1 f-s-16 m-t-0">
+                    {{ element.comment }}
+                  </p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600"> rating</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                
+                <div class="m-l-16">
+                  <p class="f-w-600 mat-subtitle-1 f-s-16 m-t-0">
+                    {{ element.rating }}
+                  </p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+         
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  <style>
+    .star-rating {
+  display: flex;
+  align-items: center;
+}
+
+mat-icon {
+  color: gray;
+  font-size: 24px;
+}
+
+.filled-star {
+  color: gold;
+}
+
+.rating-text {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+  </style>

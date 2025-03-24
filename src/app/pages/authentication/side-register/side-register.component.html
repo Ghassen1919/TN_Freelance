@@ -1,0 +1,115 @@
+<div class="blank-layout-container justify-content-center">
+  <div class="position-relative row w-100 h-100">
+    <div class="col-lg-7 col-xl-8 bg-gredient p-0">
+      <div class="p-24 h-100">
+        <div
+          class="align-items-center justify-content-center img-height d-none d-lg-flex"
+        >
+          <img
+            src="/assets/images/backgrounds/Plateforme-freelance-dgitags.io_.png"
+            alt="login"
+            style="max-width: 800px"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 col-xl-4 p-0">
+      <div
+        class="p-32 d-flex align-items-start align-items-lg-center justify-content-center h-100"
+      >
+        <div class="row justify-content-center w-100">
+          <div class="col-lg-9 max-width-form">
+            <h4 class="f-w-700 f-s-24 m-0">Welcome to TN_Freelancer</h4>
+
+            <form class="m-t-30" [formGroup]="form" (ngSubmit)="onRegister()">
+              <!-- Username -->
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+                >Username</mat-label
+              >
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="username" />
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['username'].touched && f['username'].invalid">
+                  <div class="text-error" *ngIf="f['username'].errors?.['required']">Name is required.</div>
+                  <div class="text-error" *ngIf="f['username'].errors?.['minlength']">Name should be 6 characters.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- Email -->
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+                >Email Address</mat-label
+              >
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput type="email" formControlName="email" />
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['email'].touched && f['email'].invalid">
+                  <div class="text-error" *ngIf="f['email'].errors?.['required']">Email is required.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- First Name -->
+               <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+                >FirstName</mat-label
+              >
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput type="text" formControlName="firstName" />
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['firstName'].touched && f['firstName'].invalid">
+                  <div class="text-error" *ngIf="f['firstName'].errors?.['required']">First Name is required.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- Last Name -->
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >LastName</mat-label
+            >
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput type="text" formControlName="lastName" />
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['lastName'].touched && f['lastName'].invalid">
+                  <div class="text-error" *ngIf="f['lastName'].errors?.['required']">Last Name is required.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- Role Dropdown -->
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >ROLE</mat-label
+            >
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                  <mat-option value="ROLE_CLIENT">Client</mat-option>
+                  <mat-option value="ROLE_FREELANCER">Freelancer</mat-option>
+                </mat-select>
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['role'].touched && f['role'].invalid">
+                  <div class="text-error" *ngIf="f['role'].errors?.['required']">Role is required.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- Password -->
+             
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Password</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput type="password" formControlName="password" />
+                <mat-hint class="m-b-16 error-msg" *ngIf="f['password'].touched && f['password'].invalid">
+                  <div class="text-error" *ngIf="f['password'].errors?.['required']">Password is required.</div>
+                </mat-hint>
+              </mat-form-field>
+
+              <!-- Submit Button -->
+              <button mat-flat-button color="primary" class="w-100" [disabled]="!form.valid">
+                Sign Up
+              </button>
+            </form>
+
+            <span class="d-block f-w-500 d-block m-t-24">
+              Already have an Account?
+              <a [routerLink]="['/authentication/side-login']" class="text-decoration-none text-primary f-w-500 f-s-14">
+                Sign In
+              </a>
+            </span>
+            <p class="success-message" color="green" *ngIf="successMessage">{{ successMessage }}</p>
+            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

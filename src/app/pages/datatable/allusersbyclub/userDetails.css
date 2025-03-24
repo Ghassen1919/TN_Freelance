@@ -1,0 +1,48 @@
+.dialog-title {
+  text-align: center;
+  font-size: 24px; /* Increased font size */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.user-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.user-photo {
+  width: 150px; /* Increased photo size */
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 50%; /* Ensure photo is circular */
+}
+
+.user-details {
+  width: 100%;
+  max-width: 400px;
+}
+
+.user-details p {
+  font-size: 18px; /* Increased font size */
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+.user-details p strong {
+  font-weight: bold;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,61 @@
+.club-card {
+  width: 100%;
+  margin-bottom: 16px; /* Adds some space between cards */
+}
+
+.club-item-card {
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background: #fff;
+  border: 1px solid #ddd; /* Adds border around each card */
+  padding: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.club-item-card:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  transform: translateY(-5px); /* Slightly lifts the card on hover */
+}
+
+.club-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px; /* Space between header and content */
+}
+
+.club-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333; /* Slightly darker text for better contrast */
+}
+
+.club-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.club-header button:hover {
+  color: #1976d2; /* Change color to blue on hover */
+}
+
+.club-header button mat-icon {
+  font-size: 20px;
+}
+
+mat-card-content p {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0; /* Adds space between the paragraphs */
+}
+
+mat-card-content p strong {
+  color: #333; /* Make the labels bold and darker for better readability */
+}
+
+mat-card-content p:last-child {
+  margin-bottom: 0; /* Removes margin from the last paragraph */
+}

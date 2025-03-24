@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Applications for Task {{ taskId }}</h2>
+
+<mat-dialog-content>
+  <div *ngIf="candidatures.length > 0; else noApplications">
+    <table mat-table [dataSource]="candidatures" class="mat-elevation-z8 full-width-table">
+
+      <!-- Freelancer ID Column -->
+      <ng-container matColumnDef="freelanceid">
+        <th mat-header-cell *matHeaderCellDef> Freelancer ID </th>
+        <td mat-cell *matCellDef="let app"> {{ app.freelanceid }} </td>
+      </ng-container>
+
+      <!-- Motivation Column (Wider Column) -->
+      <ng-container matColumnDef="motivation">
+        <th mat-header-cell *matHeaderCellDef> Motivation </th>
+        <td mat-cell *matCellDef="let app"> {{ app.motivation }} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="action-header"> Actions </th>
+        <td mat-cell *matCellDef="let app">
+          <button mat-icon-button color="primary" (click)="confirmCandidature(app.id)">
+            ✅
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteCandidature(app.id)">
+            ❌
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Table Header and Row Definition -->
+      <tr mat-header-row *matHeaderRowDef="['freelanceid', 'motivation', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['freelanceid', 'motivation', 'actions'];"></tr>
+      
+    </table>
+  </div>
+
+  <ng-template #noApplications>
+    <p class="no-applications-text">No applications found for this task.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>
+
+<!-- Styling -->
+<style>
+  .full-width-table {
+    width: 100%;
+  }
+
+  .action-header {
+    text-align: center;
+  }
+
+  td, th {
+    padding: 12px;
+    text-align: left;
+  }
+
+  td:last-child {
+    text-align: center;
+  }
+
+  /* Wider "Motivation" column */
+  .mat-column-motivation {
+    flex: 3; /* Makes the motivation column larger */
+  }
+
+  .no-applications-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: gray;
+  }
+  </style>

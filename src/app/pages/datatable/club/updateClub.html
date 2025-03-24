@@ -1,0 +1,62 @@
+<mat-dialog-content style="min-width: 600px">
+    <form #updateForm="ngForm" >
+      <div class="d-flex align-items-center m-b-16">
+        <h2>Update Club </h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="text"
+              matInput
+              required
+              name="title"
+              id="title"
+             
+              
+              [(ngModel)]="formData.title"
+
+            #title="ngModel"
+            />
+            <mat-error *ngIf="title.invalid && title.touched">title is required</mat-error>
+          </mat-form-field>
+        </div>
+        
+        
+        
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="text"
+              matInput
+              required
+              id="description"
+              name="description"
+              [(ngModel)]="formData.description" 
+              placeholder="Enter description"
+              #description="ngModel"
+              />
+              <mat-error *ngIf="description.invalid && description.touched">description is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <button
+        mat-flat-button
+        (click)="updateClub(updateForm)"
+        mat-flat-button
+        color="primary"
+        [disabled]="!updateForm.valid"
+      >
+        Update
+      </button>
+      <button
+        mat-stroked-button
+        color="warn"
+        class="m-l-8"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </form>
+  </mat-dialog-content>
+  

@@ -1,0 +1,62 @@
+
+<mat-dialog-content style="min-width: 600px">
+    <form #SignupForm="ngForm" >
+    <div class="d-flex align-items-center m-b-16">
+        <h2>Add Role</h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <input
+                    type="text"
+                    matInput
+                    required
+                    name="roleName"
+                    id="roleName"
+                    placeholder="Enter Rolename"
+                    [(ngModel)]="formData.roleName"
+                    #roleName="ngModel"
+                    />
+                    <mat-error *ngIf="roleName.invalid && roleName.touched">role Name is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <input
+                    type="text"
+                    matInput
+                    required
+                    name="roleDescription"
+                    id="roleDescription"
+                    placeholder="Enter description"
+                    [(ngModel)]="formData.roleDescription"
+                    #roleDescription="ngModel"
+                    />
+                    <mat-error *ngIf="roleDescription.invalid && roleDescription.touched">role Description is required</mat-error>
+            </mat-form-field>
+        </div>
+       
+    </div>
+    <button
+        mat-flat-button
+        (click)="addRole(SignupForm)"
+        mat-flat-button
+        color="primary"
+        [disabled]="!SignupForm.valid || !formData.roleName "
+    >
+        Create
+    </button>
+    <button
+        mat-stroked-button
+        color="warn"
+        class="m-l-8"
+        (click)="closeDialog()"
+    >
+        Cancel
+    </button>
+</form>
+
+  </mat-dialog-content>
+  
+  
+  

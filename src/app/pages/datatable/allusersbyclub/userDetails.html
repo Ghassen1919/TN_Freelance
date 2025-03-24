@@ -1,0 +1,33 @@
+<h2 mat-dialog-title class="dialog-title">User Details</h2>
+<mat-dialog-content class="dialog-content" *ngIf="user">
+  <div class="user-details-container">
+    <img class="user-photo" src="data:image/jpeg;base64,{{user.userPhoto}}">
+    <div class="user-details">
+      <p><strong>Username:</strong> {{ user.userName }}</p>
+      <p><strong>First Name:</strong> {{ user.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Date of Birth:</strong> {{ user.dateOfBirth }}</p>
+      <p><strong>Phone Number:</strong> {{ user.whatsappPhoneNumber }}</p>
+      <p><strong>Salary:</strong> {{ user.salary }} TND </p>
+      <p><strong>Country:</strong> {{ user.countryOfResidence }}</p>
+      <p><strong>Role(s):</strong>
+        <ng-container *ngFor="let role of user.role">
+          {{ role.roleName }}<br>
+        </ng-container>
+      </p>
+      <p><strong>Team(s):</strong>
+        <ng-container *ngFor="let team of user.teams">
+          {{ team.teamName }}<br>
+        </ng-container>
+      </p>
+      <p *ngIf="user.role[0].roleName === 'Player'"><strong>In Game Name:</strong> {{ user.inGameName }}</p>
+      <p *ngIf="user.role[0].roleName === 'Player'"><strong>Jersey Size:</strong> {{ user.jerseySize }}</p>
+      <p *ngIf="user.role[0].roleName === 'Player'"><strong>Social Media Links:</strong> {{ user.socialMediaLinkFollowers }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

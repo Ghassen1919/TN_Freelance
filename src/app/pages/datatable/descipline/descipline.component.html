@@ -1,0 +1,25 @@
+<mat-card class="cardWithShadow p-24">
+  <mat-card-content>
+    <div *ngFor="let element of data" class="club-card m-b-16">
+      <mat-card class="club-item-card p-16">
+        <mat-card-header>
+          <div class="club-header d-flex justify-content-between align-items-center">
+            <h3 class="f-s-18 f-w-600">{{ element.title }}</h3>
+          </div>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="f-s-14"><strong>Client:</strong>  {{ element.reviewerName || 'Loading...' }}</p>
+          <p class="f-s-14"><strong>Description:</strong> {{ element.description }}</p>
+          <p class="f-s-14"><strong>Status:</strong> {{ element.status }}</p>
+          <p class="f-s-14"><strong>Created at:</strong> {{ element.createdAt }}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="d-flex justify-content-end" (click)="openDialogAddCandidature(element.id)">
+          <button mat-flat-button  color="primary"> Apply
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,168 @@
+<mat-card class="cardWithShadow" >
+  <mat-card-content class="p-24">
+    <div class="row align-items-center">
+      <div class="col-lg-3">
+        <!-- Search Input -->
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <input
+            matInput
+            placeholder="Search User"
+            (keyup)="applyFilter($any($event.target).value)"
+          />
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-20"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3">
+        <!-- Filter by Role Dropdown -->
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <mat-label>Filter by Role</mat-label>
+          <mat-select [(ngModel)]="selectedRole" name="selectedRole" (ngModelChange)="onRoleChange()">
+            <mat-option [value]="null">All Roles</mat-option>
+            <!-- Options for roles -->
+             <mat-option *ngFor="let role of RolesList" [value]="role.roleId">{{ role.roleName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3">
+        <!-- Filter by Team Dropdown -->
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <mat-label>Filter by Team</mat-label>
+          <mat-select [(ngModel)]="selectedTeam" name="selectedTeam" (ngModelChange)="onTeamChange()">
+            <!-- Empty option to reset the table -->
+            <mat-option [value]="null">All Teams</mat-option>
+            <!-- Options for teams -->
+            <mat-option *ngFor="let team of TeamsList" [value]="team.teamId">{{ team.teamName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        
+      </div>
+      <div class="col-lg-3 d-flex align-items-center justify-content-end" [matMenuTriggerFor]="menu">
+        <!-- Add User Button -->
+        <button mat-flat-button color="primary">
+          Add User
+        </button>
+        <!-- Menu for Add User Options -->
+        <mat-menu  #menu="matMenu" yPosition="below" xPosition="before">
+          <button mat-menu-item (click)="openDialogAddPlayer()">Add Player</button>
+          <button mat-menu-item (click)="openDialogAddCoach()">Add Coach</button>
+          <button mat-menu-item (click)="openDialogAddOthers()">Add Others</button>
+        </mat-menu>
+       
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+  
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Name</th>
+            <td mat-cell *matCellDef="let element" class="mat-mdc-cell mdc-data-table__cell cdk-cell cdk-column-name mat-column-name ng-star-inserted">
+              <div class="d-flex align-items-center">
+                <img width="40" class="rounded-circle" src="data:image/jpeg;base64,{{element.userPhoto}}">
+                <div class="m-l-16">
+                  <p class="f-w-600 mat-subtitle-1 f-s-16 m-t-0">
+                    {{ element.userName }}
+                  </p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              Email
+            </th>
+            <td mat-cell *matCellDef="let element " class="f-s-14">{{ element.email }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+             Role(s)
+            </th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+                <ng-container *ngFor="let role of element.role">
+                    {{ role.roleName }}
+                    <br>
+                </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="team">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+             Teams(s)
+            </th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+                <ng-container *ngFor="let team of element.teams">
+                    {{ team.teamName }}
+                    <br>
+                </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="date of birth">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              date of birth
+            </th>
+            <td mat-cell *matCellDef="let element " class="f-s-14">{{ element.dateOfBirth }}</td>
+          </ng-container>
+          <ng-container matColumnDef="phone number">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              phone_number
+            </th>
+            <td mat-cell *matCellDef="let element " class="f-s-14">{{ element.whatsappPhoneNumber }}</td>
+          </ng-container>
+          <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              salary
+            </th>
+            <td mat-cell *matCellDef="let element " class="f-s-14">{{ element.salary }}</td>
+          </ng-container>
+          <ng-container matColumnDef="country of residence">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              country
+            </th>
+            <td mat-cell *matCellDef="let element " class="f-s-14">{{ element.countryOfResidence }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+              Action
+            </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+              <button
+              (click)="Blockuser(element.userId)" [disabled]="(element.userActive==0)"
+              class="m-r-10 cursor-pointer" 
+              ><i-tabler name="lock" class="icon-18"></i-tabler
+            ></button>
+            <button
+            (click)="Unblockuser(element.userId)"
+              class="m-r-10 cursor-pointer" [disabled]="(element.userActive==1)"  
+            >
+              <i-tabler name="edit" class="icon-18"></i-tabler>
+            </button>
+            <button
+            (click)="openDialogShowUserDetails(element)"
+              class="m-r-10 cursor-pointer"   
+            >
+            <i-tabler name="eye" class="icon-18"></i-tabler
+              >
+            </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>

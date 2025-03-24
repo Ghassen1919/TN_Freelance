@@ -1,0 +1,194 @@
+
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-0">
+    <mat-tab-group mat-stretch-tabs="false" animationDuration="0ms">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="d-flex align-items-center">
+            <mat-icon>
+              <i-tabler name="user-circle" class="icon-20 m-r-8"></i-tabler>
+            </mat-icon>
+          </div>
+          Account Settings
+        </ng-template>
+        <mat-card-content class="p-y-24 b-t-1">
+          <div class="row">
+            <div class="col-sm-6">
+              <mat-card class="cardWithShadow">
+                <mat-card-content class="p-y-24">
+                  <mat-card-title>Change Profile</mat-card-title>
+                  <mat-card-subtitle class="mat-body-1"
+                    >Change your profile picture from here</mat-card-subtitle
+                  >
+                  <div class="text-center m-t-24">
+                    <img
+                    src="data:image/jpeg;base64,{{currentUser.userPhoto}}"
+                      class="rounded-circle"
+                      width="120"
+                    />
+                    <div class="m-t-24">
+                      <button mat-flat-button color="primary" class="m-r-8" (click)="onFileSelected()">
+                        Upload
+                      </button>
+                     
+                    </div>
+                    <span class="f-s-14 m-t-24 d-block"
+                      >Allowed JPG or PNG. Max size of 800K</span
+                    >
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-sm-6">
+              <mat-card class="cardWithShadow">
+                <mat-card-content class="p-y-24">
+                  <mat-card-title>Change Password</mat-card-title>
+                  <mat-card-subtitle class="mat-body-1"
+                    >To change your password please confirm
+                    here</mat-card-subtitle
+                  >
+                  <form class="m-t-24" #myForm="ngForm">
+                    <!-- input -->
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                      >Current Password</mat-label
+                    >
+                    <mat-form-field
+                      appearance="outline"
+                      class="w-100"
+                      color="primary"
+                    >
+                    <input matInput [type]="showOldPassword ? 'text' : 'password'" placeholder="Enter your old Password" [(ngModel)]="oldPassword" name="oldPassword" required />
+                    <button *ngIf="!showOldPassword" class="btn btn-secondary show-password-button" type="button" (click)="showOldPassword = !showOldPassword" matSuffix style="background-color: transparent; border: none;">
+                      <mat-icon>visibility_off</mat-icon>
+                    </button>
+                    <button *ngIf="showOldPassword" class="btn btn-secondary show-password-button" type="button" (click)="showOldPassword = !showOldPassword" matSuffix style="background-color: transparent;border: none;">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    </mat-form-field>
+                    <!-- input -->
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                      >New Password</mat-label
+                    >
+                    <mat-form-field
+                      appearance="outline"
+                      class="w-100"
+                      color="primary"
+                    >
+                    <input matInput [type]="shownewPassword ? 'text' : 'password'" placeholder="Enter your new Password" [(ngModel)]="newPassword" name="newPassword" required />
+                    <button *ngIf="!shownewPassword" class="btn btn-secondary show-password-button" type="button" (click)="shownewPassword = !shownewPassword" matSuffix style="background-color: transparent;border: none;">
+                      <mat-icon>visibility_off</mat-icon>
+                    </button>
+                    <button *ngIf="shownewPassword" class="btn btn-secondary show-password-button" type="button" (click)="shownewPassword = !shownewPassword" matSuffix style="background-color: transparent;border: none;">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    </mat-form-field>
+                    <!-- input -->
+                    <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                      >Confirm Password</mat-label
+                    >
+                    <mat-form-field
+                      appearance="outline"
+                      class="w-100 hide-hint"
+                      color="primary"
+                    >
+                    <input matInput [type]="shownewPassword1 ? 'text' : 'password'" placeholder="Confirm New Password" [(ngModel)]="newPassword1" name="newPassword1" required />
+                    <button *ngIf="!shownewPassword1" class="btn btn-secondary show-password-button" type="button" (click)="shownewPassword1 = !shownewPassword1" matSuffix style="background-color: transparent;border: none;">
+                      <mat-icon>visibility_off</mat-icon>
+                    </button>
+                    <button *ngIf="shownewPassword1" class="btn btn-secondary show-password-button" type="button" (click)="shownewPassword1 = !shownewPassword1" matSuffix style="background-color: transparent;border: none;">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    </mat-form-field>
+                    <div class="m-t-24">
+                      <button mat-flat-button color="primary" class="m-r-8" (click)="modifyPassword(myForm)" [disabled]="!myForm.valid">
+                        Send Request
+                      </button>
+                     
+                    </div>
+                  </form>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-12">
+              <mat-card class="cardWithShadow">
+                <mat-card-content>
+                  <mat-card-title>Personal Details</mat-card-title>
+                 
+
+                  <div class="row m-t-24">
+                    <div class="col-sm-6">
+                      <!-- input -->
+                      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                        >Your Name</mat-label
+                      >
+                      <mat-form-field
+                        appearance="outline"
+                        class="w-100"
+                        color="primary"
+                      >
+                        <input matInput type="text" value="{{currentUser.userName}}" disabled/>
+                      </mat-form-field>
+                      <!-- input -->
+                      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                        >Email</mat-label
+                      >
+                      <mat-form-field
+                      appearance="outline"
+                      class="w-100"
+                      color="primary"
+                    >
+                      <input matInput type="text" value="{{currentUser.email}}" disabled/>
+                    </mat-form-field>
+                      <!-- input -->
+                      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                        >Whatsapp Phone Number</mat-label
+                      >
+                      <mat-form-field
+                        appearance="outline"
+                        class="w-100"
+                        color="primary"
+                      >
+                        <input
+                          matInput
+                          type="number"
+                          value="{{currentUser.whatsappPhoneNumber}}"disabled
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- input -->
+                      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                        >Date Of Birth</mat-label
+                      >
+                      <mat-form-field
+                        appearance="outline"
+                        class="w-100"
+                        color="primary"
+                      >
+                        <input matInput type="text" value="{{currentUser.dateOfBirth}}" disabled/>
+                      </mat-form-field>
+                      <!-- input -->
+                      <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block"
+                        >country Of Residence</mat-label
+                      >
+                      <mat-form-field
+                      appearance="outline"
+                      class="w-100"
+                      color="primary"
+                    >
+                      <input matInput type="text" value="{{currentUser.countryOfResidence}}" disabled />
+                    </mat-form-field>
+                      
+                    </div>
+                   
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-tab>
+    
+      
+  
+

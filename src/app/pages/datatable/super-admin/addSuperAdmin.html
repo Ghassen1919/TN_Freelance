@@ -1,0 +1,160 @@
+
+<mat-dialog-content style="min-width: 600px">
+    <form #SignupForm="ngForm" >
+      <div class="d-flex align-items-center m-b-16">
+       
+        <h2>Add SuperAdmin</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="text"
+              matInput
+              required
+              name="firstName"
+              id="firstName"
+              placeholder="Enter firstName"
+              [(ngModel)]="formData.firstName"
+              #firstName="ngModel"
+            />
+            <mat-error *ngIf="firstName.invalid && firstName.touched">First Name is required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="text"
+              matInput
+              required
+              name="lastName"
+              id="lastName"
+              placeholder="Enter lastName"
+              [(ngModel)]="formData.lastName"
+              #lastName="ngModel"
+            />
+            <mat-error *ngIf="lastName.invalid && lastName.touched">Last Name is required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="email"
+              matInput
+              required
+              id="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              placeholder="Email"
+              #email="ngModel"
+              email
+            />
+            <mat-error *ngIf="email.errors?.['required'] && email.touched">Email is required</mat-error>
+            <mat-error *ngIf="email.errors?.['email'] && email.touched">Enter a valid email</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              type="number"
+              matInput
+              required
+              id="whatsappPhoneNumber"
+              name="whatsappPhoneNumber"
+              [(ngModel)]="formData.whatsappPhoneNumber"
+              placeholder="WhatsApp Phone Number"
+              #whatsappPhoneNumber="ngModel"
+            />
+            <mat-error *ngIf="whatsappPhoneNumber.invalid && whatsappPhoneNumber.touched">WhatsApp Phone Number is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              required
+              id="dateOfBirth"
+              name="dateOfBirth"
+              [(ngModel)]="formData.dateOfBirth"
+              placeholder="Date of Birth"
+              #dateOfBirth="ngModel"
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="dateOfBirth.invalid && dateOfBirth.touched">Date of Birth is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              matInput
+              required
+              id="userPassword"
+              name="userPassword"
+              [(ngModel)]="formData.userPassword"
+              placeholder="Enter password"
+              pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$"
+              #userPassword="ngModel"
+            />
+            <button *ngIf="!showPassword" class="btn btn-secondary show-password-button" type="button" (click)="showPassword = !showPassword" matSuffix style="background-color: transparent; border: none;">
+              <mat-icon>visibility_off</mat-icon>
+            </button>
+            <button *ngIf="showPassword" class="btn btn-secondary show-password-button" type="button" (click)="showPassword = !showPassword" matSuffix style="background-color: transparent; border: none;">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <mat-error *ngIf="userPassword.errors?.['required'] && userPassword.touched">Password is required</mat-error>
+            <mat-error *ngIf="userPassword.errors?.['pattern'] && userPassword.touched">min 8 characters long and contain letters and numbers</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <input
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              matInput
+              required
+              id="confirmPassword"
+              name="confirmPassword"
+              [(ngModel)]="formData.confirmPassword"
+              placeholder="Confirm password"
+              #confirmPassword="ngModel"
+            />
+            <button *ngIf="!showConfirmPassword" class="btn btn-secondary show-password-button" type="button" (click)="showConfirmPassword = !showConfirmPassword" matSuffix style="background-color: transparent; border: none;">
+              <mat-icon>visibility_off</mat-icon>
+            </button>
+            <button *ngIf="showConfirmPassword" class="btn btn-secondary show-password-button" type="button" (click)="showConfirmPassword = !showConfirmPassword" matSuffix style="background-color: transparent; border: none;">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <mat-error *ngIf="confirmPassword.invalid && confirmPassword.touched">Confirming the password is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+        
+    
+      <button
+        mat-flat-button
+        (click)="registerUser(SignupForm)"
+        mat-flat-button
+        color="primary"
+        [disabled]="!SignupForm.valid"
+    
+      >
+        Create
+      </button>
+      <button
+        mat-stroked-button
+        color="warn"
+        class="m-l-8"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </form>
+  </mat-dialog-content>
+  
+  
+  

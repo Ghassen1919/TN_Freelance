@@ -1,0 +1,53 @@
+
+<mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="row justify-content-between">
+        <div class="col-lg-4">
+         
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-end">
+          <button mat-flat-button (click)="openDialogAddClub()" color="primary">
+            Add Task
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="cardWithShadow p-24">
+    <mat-card-content>
+      <div *ngFor="let element of data" class="club-card m-b-16">
+        <mat-card class="club-item-card p-16">
+          <mat-card-header>
+            <div class="club-header">
+              <h3 class="f-s-18 f-w-600">{{ element.title }}</h3>
+  
+              <!-- Edit Button (Top Right) -->
+              <button mat-icon-button color="primary" (click)="openDialogUpdateClub(element.id, element.title, element.description)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+  
+          <mat-card-content>
+            <p><strong>Client:</strong> {{ element.clientId }}</p>
+            <p><strong>Description:</strong> {{ element.description }}</p>
+            <p><strong>Status:</strong> {{ element.status }}</p>
+            <p><strong>Created at:</strong> {{ element.createdAt }}</p>
+            <p><strong>Updated at:</strong> {{ element.updatedAt }}</p>
+          </mat-card-content>
+  
+          <!-- View Applications Button (Bottom Right) -->
+          <mat-card-actions class="d-flex justify-content-end" (click)="openDialogAddCandidature(element.id)" >
+            <button mat-flat-button  color="primary"> View Applications
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+     
+  
+  
+  

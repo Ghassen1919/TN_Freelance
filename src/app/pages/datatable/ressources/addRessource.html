@@ -1,0 +1,71 @@
+<mat-dialog-content style="min-width: 600px">
+  <form #SignupForm="ngForm">
+    <div class="d-flex align-items-center m-b-16">
+      <h2>Add Review</h2>
+    </div>
+
+    <div class="col-lg-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <textarea
+          matInput
+          required
+          id="comment"
+          name="comment"
+          [(ngModel)]="formData.comment"
+          placeholder="Enter comment"
+          #comment="ngModel"
+          rows="4"
+        ></textarea>
+        <mat-error *ngIf="comment.invalid && comment.touched">
+          Comment is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Star Rating System -->
+    <div class="col-lg-6">
+      <div class="star-rating">
+        <mat-icon
+          *ngFor="let star of stars; let i = index"
+          (click)="rate(i + 1)"
+          [ngClass]="{ 'selected': i < formData.rating }"
+        >
+          {{ i < formData.rating ? 'star' : 'star_border' }}
+        </mat-icon>
+      </div>
+      <mat-error *ngIf="formData.rating === 0 && ratingTouched">
+        Rating is required
+      </mat-error>
+    </div>
+<br>
+    <button
+      mat-flat-button
+      (click)="AddCandidature(SignupForm)"
+      color="primary"
+      [disabled]="!SignupForm.valid || formData.rating === 0"
+    >
+      Create
+    </button>
+
+    <button mat-stroked-button color="warn" class="m-l-8" (click)="closeDialog()">
+      Cancel
+    </button>
+  </form>
+</mat-dialog-content>
+<style>
+  .star-rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+mat-icon {
+  font-size: 30px;
+  color: gray;
+  transition: color 0.3s;
+}
+
+mat-icon.selected {
+  color: gold;
+}
+</style>

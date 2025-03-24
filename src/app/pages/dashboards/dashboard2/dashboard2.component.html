@@ -1,0 +1,28 @@
+<mat-card class="shadow-none bg-light-primary overflow-hidden">
+    <mat-card-content class="p-32 p-b-0">
+      <div class="row justify-content-between">
+        <div class="col-sm-6" *ngIf="data" style="margin-left: 5%;">
+          <mat-card-title>Your Club Details</mat-card-title>
+          <mat-card-subtitle class="mat-body-1 m-t-16 lh-24 m-b-24"
+            >Name: {{ data.clubName }}</mat-card-subtitle
+          >
+          <mat-card-subtitle class="mat-body-1 m-t-16 lh-24 m-b-24"
+            >Date Creation: {{ data.dateCreation }}</mat-card-subtitle
+          >
+          <mat-card-subtitle class="mat-body-1 m-t-16 lh-24 m-b-24"
+            >Description : {{ data.description }}</mat-card-subtitle
+          >
+        </div>
+        <div class="col-sm-5">
+          <img
+            src="assets/images/products/esports-logo.png"
+            alt="welcome"
+            width="300" class="welcome-img"
+          />
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <app-app-top-cards></app-app-top-cards>
+

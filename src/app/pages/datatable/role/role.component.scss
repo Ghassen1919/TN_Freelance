@@ -1,0 +1,54 @@
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: bold;
+}
+
+.checkbox-column input {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.sub-header {
+  background-color: #e2e2e2;
+  font-weight: bold;
+}
+
+.update-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+.update-button:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
